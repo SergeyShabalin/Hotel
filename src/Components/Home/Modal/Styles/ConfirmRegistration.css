@@ -1,0 +1,15 @@
+.main {
+    width: 100%;
+    display: block;
+}
+.head{
+    margin-left: 10%;
+}
+
+.user-info {
+    margin-left: 10%;
+    margin-top: 10%;
+    font-family: Open Sans, Arial, sans-serif;
+    font-size: x-large;
+    font-weight: 600;
+}

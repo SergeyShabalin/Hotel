@@ -1,8 +1,23 @@
-.content-info{
+.content-info {
     position: relative;
     display: block;
-
 }
-.info{
 
+.info {
+width: 100%;
+}
+
+.headers {
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+     padding-left: 5px;
+}
+
+.headers:hover {
+    transition: all 0.3s ease-in-out;
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    border-radius: 15px;
+    box-shadow:  0 0 20px rgba(26, 79, 140, 0.5)
 }

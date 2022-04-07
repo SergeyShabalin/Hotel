@@ -1,0 +1,38 @@
+.calendar-field {
+    border-radius: 5px;
+}
+
+.registration {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+    height: 90%;
+    display: flex;
+}
+
+.calendar {
+    margin-left: 10px;
+    width: 50%;
+    height: 70%;
+}
+
+.registration-field {
+    padding: 4px;
+    width: 100%;
+    height: 100%;
+}
+
+.inputs{
+    margin: 10px;
+}
+
+.registration-label{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+
+
+
+
+

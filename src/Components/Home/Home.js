@@ -1,23 +1,23 @@
-import react, {useState, useEffect} from 'react'
-import axios from "axios";
+import React,{useState} from "react";
 
- const Home = () =>{
+import Rooms from "./Rooms";
+import Modal from "./Modal/Modal";
+const Home = () => {
 
-     useEffect(() => {
-         hotels()
-     }, []);
+    const [showModal, setShowModal] = useState(false)
+    const [rooms, setRooms] = useState([])
 
-     const hotels = () => {
-         axios.get('http://localhost:4000/hotels').then((resp) => {
-             console.log(resp.data)
-         }).catch((error) => {
-             console.warn(error, 'server error');
-         })
-     }
+    function checkModal(isModal, room){
+        setShowModal(isModal)
+        setRooms(room)
+    }
 
-    return(
-        <div>home page</div>
+    return (
+        <div>home page
+            {showModal ?<Modal rooms={rooms}  checkModal={checkModal} /> : null}
+            <Rooms checkModal={checkModal}/>
+        </div>
     )
- }
+}
 
- export default Home
+export default Home

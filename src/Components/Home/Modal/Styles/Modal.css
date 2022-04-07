@@ -1,14 +1,13 @@
 .modalWindow {
-    background: radial-gradient(rgba(255, 255, 255, 0.99), rgba(201, 195, 195, 0.85));
+    background: radial-gradient(rgb(217, 214, 214), rgba(255, 255, 255, 0.91));
     position: absolute;
-    right: calc(50% - 800px / 2);
-    width: 800px;
-    top: calc(50% - 820px / 2);
-    height: 820px;
+    right: calc(50% - 850px / 2);
+    width: 850px;
+    top: calc(50% - 840px / 2);
+    height: 840px;
     padding: 5px;
     border-radius: 40px;
     z-index: 6;
-    transition: all 0.3s ease-in-out;
     display: flex;
     box-shadow: inset 0 0 10px rgba(28, 42, 220, 0.7)
 }
@@ -21,14 +20,14 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 8;
-    transition: all 0.3s ease-in-out;
 }
 
 .content-room{
-    width: 65%;
-    height: 90%;
-    display: block;
+    width: 100%;
+    height: 95%;
+    display: flex;
     justify-content: center;
+
 }
 
 .content-img{
@@ -39,9 +38,9 @@
 }
 .image-modal {
     width: 100%;
+    height: 90%;
     border-radius: 40px 20px 10px 10px;
 }
-
 
 .label {
     font-family: Georgia, serif;
@@ -58,22 +57,3 @@
     padding-left: 20px;
 }
 
-.calendar{
-    margin-top: 3%;
-    width: 50%;
-    height: 70%;
-    background-color: #e3801b;
-}
-
-
-.registration-field{
-    width: 100%;
-    height: 80%;
-    background-color: #2a50ce;
-}
-
-.registration-field{
-    width: 50%;
-    height: 80%;
-   background-color: magenta;
-}
