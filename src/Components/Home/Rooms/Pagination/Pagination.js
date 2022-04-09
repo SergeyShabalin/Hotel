@@ -1,58 +1,62 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Styles/Pagination.css'
 
+const Pagination = ({getPage, allRooms}) => {
 
-const Pagination = ({rooms, getPage}) => {
+    const [sentLimit, setSentLimit] = useState(10)
 
-
-    console.log(rooms.length)
-
-    function check(limit) {
-
-    }
+    const [color1, setColor1] = useState('limit')
 
     function countPages(limit) {
-
-        let divide = rooms.length / limit
-               let count
+        let divide = allRooms / limit
+        let count
         if ((divide ^ 0) === divide) {
             count = Math.floor(divide)
         } else {
             count = Math.floor(divide) + 1
         }
-        console.log('длина массива',rooms.length)
-        console.log('будет страниц по факту',count)
 
-        let a =[]
-        for(let i=0; i<count; i++){
-            a.push(i)
+        let numberOfRooms = []
+        for (let i = 0; i < count; i++) {
+            numberOfRooms.push(i)
         }
 
-        let pages = a.map(item => {
-            console.log(item)
+
+
+        let pages = numberOfRooms.map(item => {
+            let page = item + 1
             return (
-                <div className='limit' onClick={() => getPage(count)}>{item+1}</div>
+                <div key={page}
+                     className='limit'
+                     onClick={() => getPage(page, sentLimit)}>
+                    {page}
+                </div>
             )
         })
+
+
         return pages
+    }
+
+    function clickLimit(limit) {
+        setSentLimit(limit)
+        countPages(limit)
+        return getPage(1, limit)
     }
 
     return (
         <div className='paginations'>
-
             <div className="pages">
-                {countPages(4)}
+                {countPages(sentLimit)}
             </div>
             <div className='limit-field'>
                 <div className='label-limit'>Показать по:</div>
-                <div className='limit' onClick={() => countPages(5)}>5</div>
-                <div className='limit' onClick={() => countPages(10)}>10</div>
-                <div className='limit' onClick={() => countPages(2)}>2</div>
-                {/*<div className='limit' onClick={() => getPage(1, 15)}>15</div>*/}
+                <div className={`limit ${color1}`} onClick={() => clickLimit(3)}>3</div>
+                <div className={`limit ${color1}`} onClick={() => clickLimit(5)}>5</div>
+                <div className={`limit ${color1}`} onClick={() => clickLimit(10)}>10</div>
+                <div className={`limit ${color1}`} onClick={() => clickLimit(15)}>15</div>
             </div>
         </div>
-
-
     )
 }
 
