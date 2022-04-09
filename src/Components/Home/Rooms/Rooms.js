@@ -9,7 +9,8 @@ import {AiOutlineExpandAlt} from "react-icons/ai";
 import {RiHome3Line} from "react-icons/ri";
 import {BsCurrencyExchange} from "react-icons/bs";
 import {BiRuble} from "react-icons/bi";
-import Button from "./Modal/UI/Button";
+import Button from "../Modal/UI/Button";
+import Pagination from "./Pagination/Pagination";
 
 
 const Rooms = ({checkModal}) => {
@@ -17,11 +18,20 @@ const Rooms = ({checkModal}) => {
     const [rooms, setRooms] = useState([])
 
     useEffect(() => {
-        hotels()
+
+        const url = 'http://localhost:4000/hotel?_page=1&_limit=15'
+        hotels(url)
     }, []);
 
-    const hotels = () => {
-        axios.get('http://localhost:4000/hotel').then((resp) => {
+    function getPage(page,limit) {
+        console.log('page',page)
+        const ref = 'http://localhost:4000/hotel?_page=' + page + '&_limit='+limit
+        hotels(ref)
+
+    }
+
+    const hotels = (ref) => {
+        axios.get(ref).then((resp) => {
             setRooms(resp.data)
             viewRooms()
         }).catch((error) => {
@@ -29,9 +39,12 @@ const Rooms = ({checkModal}) => {
         })
     }
 
+
+
+
+
     function viewRooms() {
         let freeRooms = rooms && rooms.map(room => {
-
             return (
                 <div key={room.id} className='grid-item'>
                     <img className='image' src={room.img}/>
@@ -70,7 +83,8 @@ const Rooms = ({checkModal}) => {
                         </div>
 
                         <div className='property-price'>
-                            <div onClick={() => checkModal(true, room)} type="button" className="btn">Забронировать</div>
+                            <div onClick={() => checkModal(true, room)} type="button" className="btn">Забронировать
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,8 +95,13 @@ const Rooms = ({checkModal}) => {
     }
 
     return (
-        <div className='box-list'>
-            {viewRooms()}
+        <div>
+            <Pagination
+                rooms={rooms}
+                getPage={getPage}/>
+            <div className='box-list'>
+                {viewRooms()}
+            </div>
         </div>
     )
 }

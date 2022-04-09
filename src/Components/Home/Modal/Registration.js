@@ -7,7 +7,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 
-const Registration = ({getUserValue}) => {
+const Registration = ({getUserValue,closeModal}) => {
 
     let initState = {firstName: '', name: '', lastName: '', telNumber: ''}
 
@@ -57,8 +57,11 @@ const Registration = ({getUserValue}) => {
                     </div>
                     <div className='button-field'>
                         <div className='button'
-                             onClick={() => getUserValue(date, inputData)}
-                        >
+                             onClick={()=>closeModal(false)}>
+                            <div className='label-button'>Закрыть</div>
+                        </div>
+                        <div className='button'
+                             onClick={() => getUserValue(date, inputData)}>
                             <div className='label-button'>Забронировать</div>
                         </div>
                     </div>
