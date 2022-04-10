@@ -10,6 +10,7 @@ const BookingList = () => {
 
     useEffect(() => {
         viewList()
+
     }, []);
 
     const viewList = () => {
@@ -18,6 +19,21 @@ const BookingList = () => {
         }).catch((error) => {
             console.warn(error, 'server error');
         })
+    }
+
+    function deleteBooking(booking){
+        if (window.confirm('бронирование номера '+ booking.roomNumber+ ' на '+ booking.date +' будет отменено. Продолжить?')) {
+            axios.delete('http://localhost:4000/bookingList/' + booking.id).then(() => {
+                let devicesWithDelete = bookingList.filter(function ({_id}) {
+                    if (booking.id === _id) {
+                        return false
+                    }
+                    return true
+                });
+                setBookingList(devicesWithDelete)
+                viewList()
+            })
+        }
     }
 
     function takeList() {
@@ -31,7 +47,7 @@ const BookingList = () => {
                     <th>{item.roomName}</th>
                     <th>{item.date}</th>
                     <th>{item.telNumber}</th>
-                    <th><RiDeleteBack2Line className='icon-del' /></th>
+                    <th><RiDeleteBack2Line className='icon-del' onClick={()=>deleteBooking(item)} /></th>
                 </tr>
             )
         })

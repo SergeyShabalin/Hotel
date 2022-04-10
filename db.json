@@ -479,22 +479,12 @@
     {
       "firstName": "Потапов",
       "name": "Алексей",
-      "lastName": "Вискторович",
+      "lastName": "Викторович",
       "roomNumber": "419",
       "roomName": "Стандарт с двумя кроватями",
       "date": "20/04/2022",
       "telNumber": "89993365527",
       "id": 4
-    },
-    {
-      "firstName": "rewq",
-      "name": "tre",
-      "lastName": "g",
-      "roomNumber": "215",
-      "roomName": "Делюкс с панорамным видом",
-      "date": "08/04/2022",
-      "telNumber": "3423",
-      "id": 5
     }
   ]
 }

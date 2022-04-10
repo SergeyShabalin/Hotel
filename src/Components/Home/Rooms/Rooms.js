@@ -9,7 +9,7 @@ import {AiOutlineExpandAlt} from "react-icons/ai";
 import {RiHome3Line} from "react-icons/ri";
 import {BsCurrencyExchange} from "react-icons/bs";
 import {BiRuble} from "react-icons/bi";
-import Pagination from "./Pagination/Pagination";
+import Pagination from "../../Pagination/Pagination";
 
 
 const Rooms = ({checkModal}) => {
@@ -88,7 +88,6 @@ const Rooms = ({checkModal}) => {
 
     return (
         <div>
-
             <div className='box-list'>
                 {viewRooms()}
             </div>
