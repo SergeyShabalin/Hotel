@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import axios from "axios";
+import {Api} from '../../Api'
+
 import Filtration from "../Filtration/Filtration"
 import {RiDeleteBack2Line} from "react-icons/ri";
 import './Styles/BookingList.css'
@@ -8,15 +9,15 @@ import {format} from "date-fns";
 
 const BookingList = () => {
     const [bookingList, setBookingList] = useState([])
-    const [url, setUrl] = useState(['http://localhost:4000/bookingList'])
+    const   url ='bookingList'
+
 
     useEffect(() => {
         viewList(url)
-
     }, []);
 
     function viewList(url) {
-        axios.get(url).then((resp) => {
+        Api.get(url).then((resp) => {
             setBookingList(resp.data)
         }).catch((error) => {
             console.warn(error, 'server error');
@@ -26,19 +27,15 @@ const BookingList = () => {
     function getFilter(prevDate, afterDate) {
         const userDate = format(new Date(prevDate), 'dd/MM/yyyy')
         const userDate2 = format(new Date(afterDate), 'dd/MM/yyyy')
-        const ref = `http://localhost:4000/bookingList?date_gte=${userDate}&date_lte=${userDate2}`
+        const ref = `bookingList?date_gte=${userDate}&date_lte=${userDate2}`
         viewList(ref)
     }
 
     function deleteBooking(booking) {
-        if (window.confirm('бронирование номера ' + booking.roomNumber + ' на ' + booking.date + ' будет отменено. Продолжить?')) {
-            axios.delete('http://localhost:4000/bookingList/' + booking.id).then(() => {
-                let devicesWithDelete = bookingList.filter(function ({_id}) {
-                    if (booking.id === _id) {
-                        return false
-                    }
-                    return true
-                });
+        const confirmMessage=window.confirm('бронирование номера ' + booking.roomNumber + ' на ' + booking.date + ' будет отменено. Продолжить?')
+        if (confirmMessage) {
+            Api.delete('bookingList/' + booking.id).then(() => {
+                let devicesWithDelete = bookingList.filter((({_id}) =>  booking.id !== _id))
                 setBookingList(devicesWithDelete)
                 viewList(url)
             })

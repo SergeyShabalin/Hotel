@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './Styles/Fitration.css'
-import {format} from "date-fns";
+
 
 function Filtration({getFilter}) {
 
@@ -25,9 +25,8 @@ function Filtration({getFilter}) {
     }
 
     function validationDate(){
-
         return(
-            <div className='error-validation'>Дата начала не может быть позднее даты начала</div>
+            <div className='error-validation'>Дата начала не может быть позднее даты конца</div>
         )
     }
 
@@ -35,14 +34,11 @@ function Filtration({getFilter}) {
         <div className='filtration-content'>
             <div className='header-content'>Фильтрация</div>
             <div className='date-field'>
-
                 <input onChange={getDateBefore} type='date' className="form-control date-input"/>
                 <input onChange={getDateAfter} type='date' className="form-control date-input"/>
-
             </div>
             <div className='button-apply'>
                 <button onClick={applyFilter}>Применить</button>
-
             </div>
             {!validation? validationDate() : null}
         </div>

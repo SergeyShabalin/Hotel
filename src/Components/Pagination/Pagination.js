@@ -66,17 +66,13 @@ const Pagination = ({getPage, allRooms, currentPage}) => {
         return getPage(1, limit)
     }
 
-    function limitPages(){
+
         let limits =[3,5,10,15]
-        let limites = limits.map(item=>{
-            return(
-                <div key={item}
+        let limites = limits.map(item=> <div key={item}
                      className={item===currentLimit? 'active limit' : 'limit' }
                      onClick={()=>clickLimit(item)}>{item}</div>
-            )
-        })
-        return limites
-    }
+        )
+
 
     return (
         <div className='paginations'>
@@ -85,7 +81,7 @@ const Pagination = ({getPage, allRooms, currentPage}) => {
             </div>
             <div className='limit-field'>
                 <div className='label-limit'>Показать по:</div>
-                {limitPages()}
+                {limites}
             </div>
         </div>
     )

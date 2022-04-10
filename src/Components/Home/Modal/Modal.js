@@ -27,8 +27,6 @@ const Modal = ({rooms, checkModal}) => {
         return checkModal(isModal)
     }
 
-
-
     return (
         <div className='modalOpacity'>
             <div className='modalWindow'>
