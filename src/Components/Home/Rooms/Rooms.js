@@ -1,15 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import axios from "axios";
+import 'boxicons';
+
+import Pagination from "../../Pagination/Pagination";
+import Sort from "../../Sort/Sort";
 
 import './Styles/Rooms.css'
 
-import 'boxicons';
 import {FaUserFriends} from "react-icons/fa";
 import {AiOutlineExpandAlt} from "react-icons/ai";
 import {RiHome3Line} from "react-icons/ri";
 import {BsCurrencyExchange} from "react-icons/bs";
 import {BiRuble} from "react-icons/bi";
-import Pagination from "../../Pagination/Pagination";
+
 
 
 const Rooms = ({checkModal}) => {
@@ -24,13 +27,19 @@ const Rooms = ({checkModal}) => {
     }, []);
 
     function getPage(page, limit, item) {
-        const ref = 'http://localhost:4000/hotel?_page=' + page + '&_limit=' + limit
-        hotels(ref)
+        const url = 'http://localhost:4000/hotel?_page=' + page + '&_limit=' + limit
+        hotels(url)
         setCurrentPage(item)
     }
 
-    const hotels = (ref) => {
-        axios.get(ref).then((resp) => {
+    function getSort(field, order){
+        const url = 'http://localhost:4000/hotel?_sort=' + field + '&_order=' + order
+        hotels(url)
+
+    }
+
+    const hotels = (url) => {
+        axios.get(url).then((resp) => {
             setRooms(resp.data)
             setAllRooms(resp.headers['x-total-count'])
             viewRooms()
@@ -87,14 +96,21 @@ const Rooms = ({checkModal}) => {
     }
 
     return (
-        <div>
+        <div >
+            <div className='rooms-field'>
+                <Sort
+                    getSort={getSort}/>
             <div className='box-list'>
                 {viewRooms()}
             </div>
-            <Pagination
-                currentPage={currentPage}
-                getPage={getPage}
-                allRooms={allRooms}/>
+            </div>
+
+                <Pagination
+                    currentPage={currentPage}
+                    getPage={getPage}
+                    allRooms={allRooms}/>
+
+
         </div>
     )
 }

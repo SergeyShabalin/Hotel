@@ -1,9 +1,12 @@
+.rooms-field{
+    display: flex;
+}
 .box-list {
     align-items: center;
     width: 70%;
     margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5%;
+    margin-right: 13%;
 }
 
 .grid-item {
