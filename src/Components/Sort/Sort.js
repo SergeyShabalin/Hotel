@@ -1,5 +1,4 @@
 import React from 'react'
-
 import './Styles/Sort.css'
 
 function Sort({getSort}) {
@@ -14,7 +13,7 @@ function Sort({getSort}) {
             <div className='label-sort'>сортировка</div>
             <div>
                 <select className="form-control" id="inputGroupSelect01" onChange={postSort}>
-                    <option value={['', '']} selected>По умолчанию...</option>
+                    <option  defaultValue={['', '']}>По умолчанию...</option>
                     <option value={['price', 'ask']}>Цена по возрастанию</option>
                     <option value={['area', 'ask']}>Площадь по возрастанию</option>
                     <option value={['numberOfSeats', 'ask']}>Кол-во мест по возрастанию</option>

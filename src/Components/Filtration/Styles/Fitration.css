@@ -1,0 +1,28 @@
+.filtration-content{
+    display: block;
+    justify-content: center;
+}
+.header-content{
+   margin: 10px;
+}
+
+.date-field{
+   display: flex;
+}
+.date-input{
+    margin: 5px;
+}
+
+.button-apply{
+    display: flex;
+    justify-content: right;
+    margin-right: 10px;
+}
+
+.error-validation{
+    margin: 10px;
+    text-align: center;
+    color: red;
+    font-size: 14px;
+    font-weight: 600;
+}
