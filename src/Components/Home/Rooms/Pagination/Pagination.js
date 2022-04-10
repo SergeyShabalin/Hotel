@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import './Styles/Pagination.css'
 
-const Pagination = ({getPage, allRooms}) => {
+const Pagination = ({getPage, allRooms, currentPage}) => {
 
     const [sentLimit, setSentLimit] = useState(10)
-
-    const [color1, setColor1] = useState('limit')
+    const [pageNumber, setPageNumber] = useState(1)
+    const [currentLimit, setCurrentLimit] = useState(10)
 
     function countPages(limit) {
         let divide = allRooms / limit
@@ -17,44 +17,75 @@ const Pagination = ({getPage, allRooms}) => {
         }
 
         let numberOfRooms = []
-        for (let i = 0; i < count; i++) {
+        for (let i = 1; i < count + 1; i++) {
             numberOfRooms.push(i)
         }
 
+        let list = 2
+        let listPages = Math.ceil(count / list)
+        let leftPosition = (pageNumber - 1) * list + 1
+        let rightPosition = pageNumber * list
 
 
-        let pages = numberOfRooms.map(item => {
-            let page = item + 1
+        function pages() {
             return (
-                <div key={page}
-                     className='limit'
-                     onClick={() => getPage(page, sentLimit)}>
-                    {page}
+                <div className='pages'>
+                    {pageNumber > 1 &&
+                        <div>
+                            <div className='btn-position' onClick={() => setPageNumber(pageNumber - 1)}> пред.</div>
+                        </div>}
+                    {numberOfRooms
+                        .filter(item => item >= leftPosition && item <= rightPosition)
+                        .map(item => {
+                            return (
+                                <div className={item === currentPage ? 'limit active' : 'limit'}
+                                     key={item}
+                                     onClick={() => getPage(item, sentLimit, item)}>
+                                    {item}
+                                </div>
+                            )
+                        })
+                    }
+
+                    {listPages > pageNumber &&
+                        <div>
+                            <div className='btn-position' onClick={() => setPageNumber(pageNumber + 1)}>след.</div>
+                        </div>}
                 </div>
             )
-        })
+        }
 
-
-        return pages
+        return pages()
     }
 
     function clickLimit(limit) {
         setSentLimit(limit)
         countPages(limit)
+        setPageNumber(1)
+        setCurrentLimit(limit)
         return getPage(1, limit)
+    }
+
+    function limitPages(){
+        let limits =[3,5,10,15]
+        let limites = limits.map(item=>{
+            return(
+                <div key={item}
+                     className={item===currentLimit? 'active limit' : 'limit' }
+                     onClick={()=>clickLimit(item)}>{item}</div>
+            )
+        })
+        return limites
     }
 
     return (
         <div className='paginations'>
-            <div className="pages">
+            <div>
                 {countPages(sentLimit)}
             </div>
             <div className='limit-field'>
                 <div className='label-limit'>Показать по:</div>
-                <div className={`limit ${color1}`} onClick={() => clickLimit(3)}>3</div>
-                <div className={`limit ${color1}`} onClick={() => clickLimit(5)}>5</div>
-                <div className={`limit ${color1}`} onClick={() => clickLimit(10)}>10</div>
-                <div className={`limit ${color1}`} onClick={() => clickLimit(15)}>15</div>
+                {limitPages()}
             </div>
         </div>
     )

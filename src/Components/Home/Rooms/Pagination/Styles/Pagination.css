@@ -1,33 +1,34 @@
 .paginations {
     width: 100%;
     height: 5vh;
-    background-color: #e3801b;
-    display: flex;
+
+    display: block;
     padding-top: 3px;
 }
 
 .pages {
-    position: absolute;
-    display: inline-block;
+    justify-content: right;
+    margin-right: 20px;
+    display: flex;
 }
 
-.pages div {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
+.label-pages{
+    margin-top: 7px;
+    margin-right: 68%;
+    color: #181616;
 }
 
 .active {
     font-weight: 600;
-    color: white;
-}
-
-.pages div:hover:not(.active) {
-    background-color: #ddd;
+    transition: all 0.2s ease-in-out;
+    -ms-transform: scale(1.4);
+    transform: scale(1.4);
+    color: #0a0a0a;
 }
 
 .limit-field {
+    width: 100%;
+    padding: 10px;
     position: absolute;
     right: 0;
     display: flex;
@@ -41,16 +42,40 @@
 
 .limit {
     cursor: pointer;
-    color: black;
-    float: left;
     padding: 8px 16px;
     border-radius: 40px;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .limit:hover {
     transition: all 0.2s ease-in-out;
     -ms-transform: scale(1.3);
     transform: scale(1.3);
+
+}
+
+.btn-position {
+    color: #000000;
+    margin-top: 8px;
+    width: 100%;
+    cursor: pointer;
+    height: 20px;
+    border-radius: 5px;
+    font-family: Open Sans, Arial, sans-serif;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-position:hover {
+     color: #6e7bff;
+    transition: all 0.2s ease-in-out;
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    font-family: Open Sans, Arial, sans-serif;
+
 }

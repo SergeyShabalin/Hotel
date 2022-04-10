@@ -16,15 +16,17 @@ const Rooms = ({checkModal}) => {
 
     const [rooms, setRooms] = useState([])
     const [allRooms, setAllRooms] = useState('')
+    const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
         const url = 'http://localhost:4000/hotel?_page=1&_limit=10'
         hotels(url)
     }, []);
 
-    function getPage(page, limit) {
+    function getPage(page, limit, item) {
         const ref = 'http://localhost:4000/hotel?_page=' + page + '&_limit=' + limit
         hotels(ref)
+        setCurrentPage(item)
     }
 
     const hotels = (ref) => {
@@ -86,12 +88,14 @@ const Rooms = ({checkModal}) => {
 
     return (
         <div>
-            <Pagination
-                getPage={getPage}
-                allRooms={allRooms}/>
+
             <div className='box-list'>
                 {viewRooms()}
             </div>
+            <Pagination
+                currentPage={currentPage}
+                getPage={getPage}
+                allRooms={allRooms}/>
         </div>
     )
 }
