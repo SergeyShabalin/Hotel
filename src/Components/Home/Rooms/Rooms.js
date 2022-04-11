@@ -27,8 +27,7 @@ const Rooms = ({checkModal}) => {
     }
 
     function getSort(field, order){
-        const url = 'hotel?_sort=' + field + '&_order=' + order
-        // http://localhost:4000/hotel?_page=2&_limit=3&_sort=price&_order=ask
+        const url = `hotel?_sort=${field}&_order=${order}`
         hotels(url)
     }
 
